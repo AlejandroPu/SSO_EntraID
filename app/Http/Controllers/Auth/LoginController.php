@@ -47,6 +47,9 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');
+		// URL de cierre de sesión de Microsoft
+		$logoutUrl = 'https://login.microsoftonline.com/common/oauth2/v2.0/logout';
+
+		return redirect($logoutUrl);
     }
 }
