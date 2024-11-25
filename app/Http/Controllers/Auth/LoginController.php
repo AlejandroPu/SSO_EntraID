@@ -14,7 +14,18 @@ class LoginController extends Controller
     {
         return Socialite::driver('graph')->redirect();
     }
-
+    
+	public function showLoginForm()
+    {
+        if (Auth::check()) {
+            // Si el usuario está autenticado, redirige a /home
+            return redirect()->route('home');
+        } else {
+            // Si no está autenticado, muestra la vista de inicio de sesión
+            return view('auth.login');
+        }
+    }
+	
     public function handleProviderCallback()
     {
         try {

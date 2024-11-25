@@ -14,9 +14,12 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
+Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('loginForm');
 
 Route::get('/login', [LoginController::class, 'redirectToProvider'])
     ->name('login')
@@ -26,6 +29,7 @@ Route::get('/login/microsoft/callback', [LoginController::class, 'handleProvider
 
 Route::get('/home', function () {
     return view('home');
-})->middleware('auth');
+})->middleware('auth')->name('home');
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
